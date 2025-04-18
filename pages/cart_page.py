@@ -9,10 +9,6 @@ class Cart_page(Base):
 
     url = 'https://www.fishohota.ru/'
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
-
     """Locators"""
 
     select_product = '//*[@id="bx_3966226736_358"]'
@@ -82,12 +78,4 @@ class Cart_page(Base):
         self.click_add_to_cart()
         self.click_cart_button()
         self.click_place_order()
-        self.verify_successful_cart()
-
-    """Methods assert word"""
-
-    def verify_successful_cart(self):
-        actual_text = self.get_main_word().text
-        expected_text = 'Корзина'
-        assert actual_text == expected_text, f"Expected text '{expected_text}', but got '{actual_text}'"
-        print("Successful Cart")
+        self.assert_word(self.get_main_word(), "Корзина")

@@ -8,10 +8,6 @@ class Client_info(Base):
 
     url = 'https://www.fishohota.ru/'
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
-
     """Locators"""
 
     first_name = '//*[@id="one_click_buy_id_FIO"]'

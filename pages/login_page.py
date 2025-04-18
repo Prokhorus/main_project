@@ -8,10 +8,6 @@ class Login_page(Base):
 
     url = 'https://www.fishohota.ru/'
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
-
     """Locators"""
 
     LOGIN_WINDOW_LOCATOR = '//*[@id="header"]/div[1]/div/div/div/div[5]'
@@ -72,17 +68,10 @@ class Login_page(Base):
     def authorization(self, username, password):
         self.driver.get(self.url)
         self.driver.maximize_window()
-        self.get_current_url()
         self.click_login_window()
         self.enter_username(username)
         self.enter_password(password)
         self.click_login_button()
-        self.verify_successful_login()
+        self.get_current_url()
+        self.assert_word(self.get_main_word(), "Личный кабинет")
 
-    """Methods assert word"""
-
-    def verify_successful_login(self):
-        actual_text = self.get_main_word().text
-        expected_text = 'Личный кабинет'
-        assert actual_text == expected_text, f"Expected text '{expected_text}', but got '{actual_text}'"
-        print("Successful login")

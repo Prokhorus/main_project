@@ -9,10 +9,6 @@ class Main_page(Base):
 
     url = 'https://fishohota.ru/'
 
-    def init(self, driver):
-        super().__init__(driver)
-        self.driver = driver
-
     """Locators"""
 
     product_category = '//*[@id="header"]/div[2]/div[1]/div/div/div[3]/div/div/nav/div/table/tbody/tr/td[2]/div/a'
@@ -89,13 +85,5 @@ class Main_page(Base):
         self.input_filter_min('50000')
         self.input_filter_max('150000')
         self.click_apply_filter()
-        self.verify_successful_main()
-
-    """Methods assert word"""
-
-    def verify_successful_main(self):
-        actual_text = self.get_main_word().text
-        expected_text = 'Мотоциклы дорожные'
-        assert actual_text == expected_text, f"Expected text '{expected_text}', but got '{actual_text}'"
-        print("Successful Main")
+        self.assert_word(self.get_main_word(), "Мотоциклы дорожные")
 

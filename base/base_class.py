@@ -12,10 +12,10 @@ class Base():
 
     """Methods assert word"""
 
-    def assert_world(self, word, result):
+    def assert_word(self, word, result):
         value_word = word.text
         assert value_word == result
-        print("Good Value Word")
+        print("Значение текста верно")
 
     # """Screenshot"""
     #
